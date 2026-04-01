@@ -1,0 +1,8 @@
+base   quizlet
+author Aaron Helton
+email  
+date   2026-04-01
+name   Quizlet Plugin
+desc   A simple quiz plugin for DokuWiki
+url    
+license GPL 2.0

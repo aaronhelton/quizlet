@@ -1,0 +1,199 @@
+/**
+ * DokuWiki Plugin Quizlet (Stylesheet)
+ * 
+ * Styling for quiz display and interaction
+ * @license    GPL 2.0
+ */
+
+.quizlet-container {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.quizlet-questions {
+    margin-bottom: 1.5em;
+}
+
+.quizlet-question {
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+
+.quizlet-question-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+.quizlet-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.quizlet-answer {
+    display: flex;
+    align-items: center;
+    padding: 0.7em;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+.quizlet-answer:hover {
+    background-color: #f5f5f5;
+    border-color: #999;
+}
+
+.quizlet-answer input[type="radio"] {
+    margin-right: 0.8em;
+    cursor: pointer;
+}
+
+.quizlet-answer-text {
+    flex: 1;
+    color: #333;
+}
+
+/* Feedback states */
+.quizlet-answer.selected {
+    border-color: #2196F3;
+    background-color: #e3f2fd;
+}
+
+.quizlet-answer.correct {
+    border-color: #4caf50;
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.quizlet-answer.correct .quizlet-answer-text {
+    color: #2e7d32;
+    font-weight: 500;
+}
+
+.quizlet-answer.correct::after {
+    content: " ✓";
+    color: #4caf50;
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+
+.quizlet-answer.incorrect {
+    border-color: #f44336;
+    background-color: #ffcdd2;
+}
+
+.quizlet-answer.incorrect .quizlet-answer-text {
+    color: #c62828;
+    font-weight: 500;
+}
+
+.quizlet-answer.incorrect::after {
+    content: " ✗";
+    color: #f44336;
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+
+/* Controls */
+.quizlet-controls {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1.5em;
+    justify-content: center;
+}
+
+.quizlet-submit,
+.quizlet-reset {
+    padding: 0.8em 2em;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.quizlet-submit {
+    background-color: #2196F3;
+    color: white;
+}
+
+.quizlet-submit:hover {
+    background-color: #1976D2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quizlet-submit:active {
+    transform: scale(0.98);
+}
+
+.quizlet-reset {
+    background-color: #757575;
+    color: white;
+}
+
+.quizlet-reset:hover {
+    background-color: #616161;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quizlet-reset:active {
+    transform: scale(0.98);
+}
+
+/* Score display */
+.quizlet-score {
+    padding: 1.5em;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.quizlet-score.pass {
+    background-color: #c8e6c9;
+    border: 2px solid #4caf50;
+    color: #2e7d32;
+}
+
+.quizlet-score.fail {
+    background-color: #ffcdd2;
+    border: 2px solid #f44336;
+    color: #c62828;
+}
+
+.quizlet-score-text {
+    line-height: 1.6;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .quizlet-controls {
+        flex-direction: column;
+    }
+
+    .quizlet-submit,
+    .quizlet-reset {
+        width: 100%;
+    }
+
+    .quizlet-question {
+        padding: 0.8em;
+    }
+
+    .quizlet-answer {
+        padding: 0.6em;
+    }
+}
