@@ -45,35 +45,40 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
             $current_question = null;
 
             foreach ($lines as $line) {
-                $line = trim($line);
-                
-                if (empty($line)) {
+                $line = rtrim($line, "\r");
+                $trimmed = trim($line);
+
+                if (empty($trimmed)) {
                     continue;
                 }
 
                 // Question line
-                if (substr($line, 0, 2) === '? ') {
+                if (substr($trimmed, 0, 2) === '? ') {
                     if ($current_question !== null) {
                         $questions[] = $current_question;
                     }
                     $current_question = array(
-                        'question' => substr($line, 2),
+                        'question' => substr($trimmed, 2),
                         'answers' => array()
                     );
                 }
                 // Correct answer
-                elseif (substr($line, 0, 2) === '+ ' && $current_question !== null) {
+                elseif (substr($trimmed, 0, 2) === '+ ' && $current_question !== null) {
                     $current_question['answers'][] = array(
-                        'text' => substr($line, 2),
+                        'text' => substr($trimmed, 2),
                         'correct' => true
                     );
                 }
                 // Incorrect answer
-                elseif (substr($line, 0, 2) === '- ' && $current_question !== null) {
+                elseif (substr($trimmed, 0, 2) === '- ' && $current_question !== null) {
                     $current_question['answers'][] = array(
-                        'text' => substr($line, 2),
+                        'text' => substr($trimmed, 2),
                         'correct' => false
                     );
+                }
+                // Continuation lines before any answer belong to the question text.
+                elseif ($current_question !== null && empty($current_question['answers'])) {
+                    $current_question['question'] .= "\n" . $trimmed;
                 }
             }
 
@@ -120,7 +125,7 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
         foreach ($questions as $q_index => $question) {
             $renderer->doc .= '<div class="quizlet-question" data-question="' . $q_index . '">';
             $renderer->doc .= '<div class="quizlet-question-text">' . 
-                hsc($question['question']) . 
+                nl2br(hsc($question['question'])) . 
                 '</div>';
             $renderer->doc .= '<div class="quizlet-answers">';
 

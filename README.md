@@ -6,6 +6,7 @@ A simple quiz plugin for DokuWiki that allows page editors to create interactive
 
 Use the `<quiz>` tag to create a quiz block. Within the tag:
 - Start each question with `? `
+- Continue a question on following lines (before the first answer) for multi-line prompts
 - Mark the correct answer with `+ `
 - Mark incorrect answers with `- `
 - Separate multiple questions with a blank line
@@ -15,6 +16,7 @@ Use the `<quiz>` tag to create a quiz block. Within the tag:
 ```
 <quiz>
 ? What is the capital of France?
+Choose the best answer from the options below.
 + Paris
 - London
 - Berlin
