@@ -93,6 +93,11 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
         list($state, $questions) = $data;
 
         if ($state == DOKU_LEXER_ENTER) {
+               // Register CSS and JavaScript resources
+               $css_file = DOKU_BASE . 'lib/plugins/quizlet/style.css';
+               $js_file = DOKU_BASE . 'lib/plugins/quizlet/script.js';
+               $renderer->doc .= '<link rel="stylesheet" type="text/css" href="' . $css_file . '" />';
+               $renderer->doc .= '<script type="text/javascript" src="' . $js_file . '"></script>';
             return true;
         }
 
