@@ -61,6 +61,9 @@ function submitQuiz(quizId) {
     const questions = quiz.querySelectorAll('.quizlet-question');
     const scoreDiv = quiz.querySelector('.quizlet-score');
     const scoreText = scoreDiv.querySelector('.quizlet-score-text');
+    const errorMsg = quiz.dataset.errorAll || 'Please answer all questions before submitting.';
+    const passMsg = scoreDiv.dataset.pass || 'Pass!';
+    const failMsg = scoreDiv.dataset.fail || 'Try Again';
     
     let totalQuestions = questions.length;
     let correctAnswers = 0;
@@ -80,7 +83,7 @@ function submitQuiz(quizId) {
     
     // Check if all questions answered
     if (answeredQuestions < totalQuestions) {
-        alert('Please answer all questions before submitting.');
+        alert(errorMsg);
         return;
     }
     

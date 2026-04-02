@@ -119,7 +119,12 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
         $quiz_counter++;
         $quiz_id = 'quiz_' . $quiz_counter;
 
-        $renderer->doc .= '<div class="quizlet-container" id="' . $quiz_id . '">';
+        // Get localized strings
+        $submit_text = $this->getLang('btn_submit');
+        $reset_text = $this->getLang('btn_reset');
+        $error_all_text = $this->getLang('error_answer_all');
+
+        $renderer->doc .= '<div class="quizlet-container" id="' . $quiz_id . '" data-error-all="' . hsc($error_all_text) . '">';
         $renderer->doc .= '<div class="quizlet-questions">';
 
         foreach ($questions as $q_index => $question) {
@@ -162,10 +167,10 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
 
         $renderer->doc .= '</div>';
         $renderer->doc .= '<div class="quizlet-controls">';
-        $renderer->doc .= '<button class="quizlet-submit" data-quiz="' . $quiz_id . '">Submit Quiz</button>';
-        $renderer->doc .= '<button class="quizlet-reset" data-quiz="' . $quiz_id . '">Reset</button>';
+        $renderer->doc .= '<button class="quizlet-submit" data-quiz="' . $quiz_id . '">' . hsc($submit_text) . '</button>';
+        $renderer->doc .= '<button class="quizlet-reset" data-quiz="' . $quiz_id . '">' . hsc($reset_text) . '</button>';
         $renderer->doc .= '</div>';
-        $renderer->doc .= '<div class="quizlet-score" id="' . $quiz_id . '_score" style="display:none;">';
+        $renderer->doc .= '<div class="quizlet-score" id="' . $quiz_id . '_score" style="display:none;" data-pass="' . hsc($this->getLang('result_pass')) . '" data-fail="' . hsc($this->getLang('result_fail')) . '">';
         $renderer->doc .= '<div class="quizlet-score-text"></div>';
         $renderer->doc .= '</div>';
         $renderer->doc .= '</div>';

@@ -37,6 +37,17 @@ Choose the best answer from the options below.
 - Score calculation
 - Visual feedback for correct/incorrect answers
 - Progress tracking
+- Multi-language support (English and Spanish included)
+
+## Localization
+
+The plugin includes language files for multiple languages. Currently supported:
+- **English** (`lang/en/lang.php`)
+- **Spanish** (`lang/es/lang.php`)
+
+DokuWiki automatically uses the language specified in its configuration. The quiz interface (buttons, messages, and results) will display in the appropriate language.
+
+To add additional languages, create a new directory under `lang/` with the language code and add a `lang.php` file with the required translation strings.
 
 ## Installation
 
