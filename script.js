@@ -62,6 +62,7 @@ function submitQuiz(quizId) {
     const scoreDiv = quiz.querySelector('.quizlet-score');
     const scoreText = scoreDiv.querySelector('.quizlet-score-text');
     const errorMsg = quiz.dataset.errorAll || 'Please answer all questions before submitting.';
+    const template = scoreDiv.dataset.template || 'You scored <strong>%d out of %d</strong> (%d%%)';
     const passMsg = scoreDiv.dataset.pass || 'Pass!';
     const failMsg = scoreDiv.dataset.fail || 'Try Again';
     
@@ -90,9 +91,14 @@ function submitQuiz(quizId) {
     // Calculate percentage
     const percentage = Math.round((correctAnswers / totalQuestions) * 100);
     
+    // Format the template with actual values
+    const resultText = template
+        .replace('%d', correctAnswers)
+        .replace('%d', totalQuestions)
+        .replace('%d', percentage);
+    
     // Display result
-    scoreText.innerHTML = 'You scored <strong>' + correctAnswers + ' out of ' + 
-                          totalQuestions + '</strong> (' + percentage + '%)';
+    scoreText.innerHTML = resultText;
     scoreDiv.style.display = 'block';
     
     // Add pass/fail styling

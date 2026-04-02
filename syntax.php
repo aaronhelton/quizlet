@@ -170,7 +170,7 @@ class syntax_plugin_quizlet extends DokuWiki_Syntax_Plugin {
         $renderer->doc .= '<button class="quizlet-submit" data-quiz="' . $quiz_id . '">' . hsc($submit_text) . '</button>';
         $renderer->doc .= '<button class="quizlet-reset" data-quiz="' . $quiz_id . '">' . hsc($reset_text) . '</button>';
         $renderer->doc .= '</div>';
-        $renderer->doc .= '<div class="quizlet-score" id="' . $quiz_id . '_score" style="display:none;" data-pass="' . hsc($this->getLang('result_pass')) . '" data-fail="' . hsc($this->getLang('result_fail')) . '">';
+        $renderer->doc .= '<div class="quizlet-score" id="' . $quiz_id . '_score" style="display:none;" data-template="' . hsc($this->getLang('result_score')) . '" data-pass="' . hsc($this->getLang('result_pass')) . '" data-fail="' . hsc($this->getLang('result_fail')) . '">';
         $renderer->doc .= '<div class="quizlet-score-text"></div>';
         $renderer->doc .= '</div>';
         $renderer->doc .= '</div>';
